@@ -48,3 +48,9 @@ Structure:
         - Form.js
         - List.js
         - Task.js
+
+#### ***Connecting front end and backend config in package.json***
+<code>  
+"main": "./server/index.js",</br>
+"proxy": "http://localhost:4004",
+</code>
