@@ -64,7 +64,6 @@ class App extends Component {
     const completedTasks = this.state.todos.reduce((acc, cur) => {
       return (cur.completed ? acc + 1 : acc + 0)
     }, 0)
-    console.log(completedTasks)
     return (
       <div >
         <Header completed={completedTasks}/>
