@@ -4,7 +4,7 @@ import './reset.css';
 import './App.css';
 import Header from './components/Header';
 import List from './components/List';
-
+import Form from './components/Form';
 
 class App extends Component {
   constructor(){
@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       todos: []
     }
+    this.addTodo = this.addTodo.bind(this);
   }
 
   componentDidMount(){
@@ -28,12 +29,23 @@ class App extends Component {
     ).catch( err => console.log(err))
   };
 
+  addTodo = (e, title) => {
+    e.preventDefault()
+    axios.post('/api/todos', {title})
+      .then( res => {
+        this.setState({
+          todos: res.data
+        })
+      })
+      .catch( err => console.log(err))
+  }
 
   render(){
     console.log(this.state)
     return (
       <div >
         <Header/>
+        <Form addTodo={this.addTodo}/>
         <List todos={this.state.todos}/>
       </div>
   )};
