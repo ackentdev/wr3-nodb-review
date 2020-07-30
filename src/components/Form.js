@@ -24,14 +24,17 @@ class Form extends Component {
         return <div className="form-container">
             <form onSubmit={e => {
                 this.props.addTodo(e, this.state.title)
-                this.setState({title:""})}}>
+                this.setState({title:""})
+                }
+            }>
                 <input
+                    className="form-elem"
                     name="title" 
                     value={this.state.title} 
                     type="text" 
                     placeholder="Add a new todo item..."
                     onChange={(e) => this.titleHandler(e)}/>
-                <button>Add Todo</button>
+                <button className="form-elem form-btn">Add Todo</button>
             </form>
         </div>
     }
