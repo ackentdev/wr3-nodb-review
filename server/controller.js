@@ -19,5 +19,26 @@ module.exports = {
             id++;
             res.status(200).send(todos);
         }
+    },
+    deleteTodo: (req, res) => {
+        // console.log(req.params)
+        const {id} = req.params
+        const index = todos.findIndex( todo => todo.id === +id);
+        if(index === -1){
+            res.status(404).send('Todo item not found in list')
+        } else {
+            todos.splice(index, 1);
+            res.status(200).send(todos)
+        }
+    },
+    completeTodo: (req, res) => {
+        const {id} = req.params;
+        const index = todos.findIndex(todo => todo.id === +id);
+        if( index === -1 ){
+            res.status(404).send('Todo item not found in list')
+        } else {
+            todos[index].completed = !todos[index].completed
+            res.status(200).send(todos)
+        }
     }
 }

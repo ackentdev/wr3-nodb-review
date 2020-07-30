@@ -13,6 +13,8 @@ class App extends Component {
       todos: []
     }
     this.addTodo = this.addTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
+    this.completeTodo = this.completeTodo.bind(this);
   }
 
   componentDidMount(){
@@ -40,13 +42,34 @@ class App extends Component {
       .catch( err => console.log(err))
   }
 
+  deleteTodo = (id) => {
+    axios.delete(`/api/todos/${id}`)
+    .then(res => {
+      this.setState({
+        todos: res.data
+      })
+    }).catch( err => console.log(err))
+  }
+
+  completeTodo = (id) => {
+    axios.put(`/api/todos/complete/${id}`)
+    .then( res => {
+      this.setState({
+        todos: res.data
+      })
+    }).catch( err => console.log(err))
+  }
+
   render(){
-    console.log(this.state)
+    const completedTasks = this.state.todos.reduce((acc, cur) => {
+      return (cur.completed ? acc + 1 : acc + 0)
+    }, 0)
+    console.log(completedTasks)
     return (
       <div >
-        <Header/>
+        <Header completed={completedTasks}/>
         <Form addTodo={this.addTodo}/>
-        <List todos={this.state.todos}/>
+        <List completeTodo={this.completeTodo} deleteTodo={this.deleteTodo} todos={this.state.todos}/>
       </div>
   )};
 };

@@ -7,8 +7,8 @@ app.use(express.json());
 
 app.get("/api/todos", ctrl.getTodos)
 app.post("/api/todos", ctrl.addTodo)
-// app.delete("/api/todos/:id")
-// app.put("/api/todos/complete/:id")
+app.delete("/api/todos/:id", ctrl.deleteTodo)
+app.put("/api/todos/complete/:id", ctrl.completeTodo)
 // app.put("/api/todos/edit/:id")
 
 app.listen(port, () => console.log(`Merry Christmas ya filthy port:${port}`));

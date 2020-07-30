@@ -33,7 +33,8 @@ body {
   margin-top: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;;
+  align-items: center;
+
 }
 
 .todo-title {
@@ -59,3 +60,13 @@ body {
   background-color: #A34D52;
   box-shadow: 3px 3px 6px 2px #000000;
 }
+
+.btn-container {
+  display: flex;
+  position: relative;
+}
+
+.todo-btn{
+  margin-left: 5px;
+}
+
